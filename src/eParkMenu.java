@@ -64,10 +64,13 @@ public class eParkMenu {
             }
 
             else if (userInput.equals("exitPark")){
-
+                System.out.println("Enter child name:");
+                String name = scanner.nextLine();
+                eps.ExitPark(name);
             }
 
             else if (userInput.equals("exit")){
+                eps.Exit();
                 System.out.println("Goodbye");
                 break;
             }

@@ -47,14 +47,14 @@ public class eParkSystem {
 
     }
 
-    public void ExitPark()
+    public void ExitPark(String name)
     {
 
     }
 
     public void Exit()
     {
-
+        System.exit(0);
     }
 }
 
