@@ -5,11 +5,13 @@ public class UserHandler {
     private int ID;
     private eParkSystem parkSystem;
     private HashMap<Integer, GuardianAccount> guardians;
+    private HashMap<String, GuardianAccount> childToGuardianMap;
 
     public UserHandler(int ID, eParkSystem parkSystem) {
         this.ID = ID;
         this.parkSystem = parkSystem;
         this.guardians = new HashMap<>();
+        this.childToGuardianMap = new HashMap<>();
     }
 
     public int getID() {
@@ -38,6 +40,10 @@ public class UserHandler {
 
     public boolean isValid(int creditNumber, Date expirationDate, float maxAmount) {
         return true;
+    }
+
+    public Child getChildById(String name) {
+
     }
 
 //    public GuardianAccount createGuardianAccount(CreditCard creditCard) {
