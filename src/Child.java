@@ -69,4 +69,12 @@ public class Child {
     public void setGuardianAccount(GuardianAccount guardianAccount) {
         this.guardianAccount = guardianAccount;
     }
+
+    /**
+     * Calculates the bill of the child.
+     * @return the bill - Float
+     */
+    public Float calculateBill() {
+        return this.ticket.calculateBill();
+    }
 }

@@ -85,4 +85,8 @@ public class eTicket {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public Float calculateBill() {
+        return this.getBalance();
+    }
 }

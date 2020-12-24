@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.Scanner;
 
 public class eParkMenu {
@@ -66,7 +67,8 @@ public class eParkMenu {
             else if (userInput.equals("exitPark")){
                 System.out.println("Enter child name:");
                 String name = scanner.nextLine();
-                eps.ExitPark(name);
+                // prints the confirmation message.
+                System.out.println(eps.ExitPark(name));
             }
 
             else if (userInput.equals("exit")){

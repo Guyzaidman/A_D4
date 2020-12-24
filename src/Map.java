@@ -1,23 +1,14 @@
 import java.util.ArrayList;
 
 public class Map {
-    private int ID;
     private GuardianAccount guardianAccount;
     private ArrayList<eTicket> eTickets;
 
-    public Map(int ID, GuardianAccount guardianAccount) {
-        this.ID = ID;
+    public Map(GuardianAccount guardianAccount) {
         this.guardianAccount = guardianAccount;
         this.eTickets = new ArrayList<>();
     }
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public GuardianAccount getGuardianAccount() {
         return guardianAccount;
