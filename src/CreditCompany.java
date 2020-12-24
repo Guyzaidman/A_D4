@@ -1,18 +1,8 @@
 public class CreditCompany {
-    private int ID;
     private PaymentHandler paymentHandler;
 
-    public CreditCompany(int ID, PaymentHandler paymentHandler) {
-        this.ID = ID;
+    public CreditCompany(PaymentHandler paymentHandler) {
         this.paymentHandler = paymentHandler;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public PaymentHandler getPaymentHandler() {

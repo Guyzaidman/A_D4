@@ -12,6 +12,10 @@ public class Child {
         this.name = name;
         this.age = age;
         this.guardianAccount = guardianAccount;
+        this.guardianAccount.addChild(this);
+        this.ticket = null;
+        this.weight = 0;
+        this.height = 0;
     }
 
     public int getID() {

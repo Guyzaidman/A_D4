@@ -2,15 +2,16 @@ import java.util.HashMap;
 
 public class GuardianAccount {
     private int ID;
-    private HashMap<Integer,Child> children;
+    private HashMap<String,Child> children;
     private CreditCard creditCard;
     private Map map;
     private UserHandler userHandler;
 
-    public GuardianAccount(int ID, CreditCard creditCard, Map map, UserHandler userHandler) {
+    public GuardianAccount(int ID, CreditCard creditCard, UserHandler userHandler) {
         this.ID = ID;
         this.creditCard = creditCard;
-        this.map = map;
+        this.creditCard.setGuardianAccount(this);
+        this.map = null;
         this.children = new HashMap<>();
         this.userHandler = userHandler;
     }
@@ -23,11 +24,11 @@ public class GuardianAccount {
         this.ID = ID;
     }
 
-    public HashMap<Integer, Child> getChildren() {
+    public HashMap<String, Child> getChildren() {
         return children;
     }
 
-    public void setChildren(HashMap<Integer, Child> children) {
+    public void setChildren(HashMap<String, Child> children) {
         this.children = children;
     }
 
@@ -53,5 +54,9 @@ public class GuardianAccount {
 
     public void setUserHandler(UserHandler userHandler) {
         this.userHandler = userHandler;
+    }
+
+    public void addChild(Child child) {
+        this.children.put(child.getName(), child);
     }
 }

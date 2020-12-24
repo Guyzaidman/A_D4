@@ -7,16 +7,16 @@ public class eTicket {
     private CreditCard creditCard;
     private float balance;
     private float guardianLimit;
-    private Map map;
+//    private Map map;
     private HashMap<Device, ArrayList<Entrance>> entranceTable;
     private String location;
 
-    public eTicket(int ID, Child child, CreditCard creditCard, float guardianLimit, Map map) {
+    public eTicket(int ID, Child child, CreditCard creditCard, float guardianLimit) {
         this.ID = ID;
         this.child = child;
+        this.child.setTicket(this);
         this.creditCard = creditCard;
         this.guardianLimit = guardianLimit;
-        this.map = map;
         this.balance = 0;
         this.entranceTable = new HashMap<>();
         this.location = "Park Entrance";
@@ -60,14 +60,6 @@ public class eTicket {
 
     public void setGuardianLimit(float guardianLimit) {
         this.guardianLimit = guardianLimit;
-    }
-
-    public Map getMap() {
-        return map;
-    }
-
-    public void setMap(Map map) {
-        this.map = map;
     }
 
     public HashMap<Device, ArrayList<Entrance>> getEntranceTable() {

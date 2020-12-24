@@ -1,12 +1,20 @@
 public class PaymentHandler {
     private int ID;
-    private ePark park;
+
+    public eParkSystem getPark() {
+        return park;
+    }
+
+    public void setPark(eParkSystem park) {
+        this.park = park;
+    }
+
+    private eParkSystem park;
     private CreditCompany creditCompany;
 
-    public PaymentHandler(int ID, ePark park, CreditCompany creditCompany) {
-        this.ID = ID;
-        this.park = park;
-        this.creditCompany = creditCompany;
+    public PaymentHandler(eParkSystem eps) {
+        this.park = eps;
+        this.creditCompany = new CreditCompany(this);
     }
 
     public int getID() {
@@ -17,13 +25,6 @@ public class PaymentHandler {
         this.ID = ID;
     }
 
-    public ePark getPark() {
-        return park;
-    }
-
-    public void setPark(ePark park) {
-        this.park = park;
-    }
 
     public CreditCompany getCreditCompany() {
         return creditCompany;
@@ -32,4 +33,9 @@ public class PaymentHandler {
     public void setCreditCompany(CreditCompany creditCompany) {
         this.creditCompany = creditCompany;
     }
+
+    public boolean isValidCredit(int ccNumber, int expMonth, int expYear, String limit) {
+        return true;
+    }
+
 }
