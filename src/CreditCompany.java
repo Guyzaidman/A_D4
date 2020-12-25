@@ -1,18 +1,8 @@
 public class CreditCompany {
-    private int ID;
     private PaymentHandler paymentHandler;
 
-    public CreditCompany(int ID, PaymentHandler paymentHandler) {
-        this.ID = ID;
+    public CreditCompany(PaymentHandler paymentHandler) {
         this.paymentHandler = paymentHandler;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public PaymentHandler getPaymentHandler() {
@@ -21,5 +11,16 @@ public class CreditCompany {
 
     public void setPaymentHandler(PaymentHandler paymentHandler) {
         this.paymentHandler = paymentHandler;
+    }
+
+    /**
+     * Charges the given bill -> billToPay from given credit card -> creditCard
+     * @param billToPay bill to charge
+     * @param creditCard credit card to charge from.
+     * @return A message that the payment is confirmed.
+     */
+    public String chargeBill(Float billToPay, CreditCard creditCard) {
+        // Company charges the credit card with given amount..
+        return "Payment confirmed.";
     }
 }

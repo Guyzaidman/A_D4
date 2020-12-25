@@ -10,27 +10,82 @@ public class eParkSystem {
     public static ArrayList<Object> systemObjects = new ArrayList<>();
 
     public eParkSystem() {
-        this.userHandler = new UserHandler();
-        this.paymentHandler = new PaymentHandler();
-        this.park = new ePark(1,this);
+        this.userHandler = new UserHandler(this);
+        this.paymentHandler = new PaymentHandler(this);
+        this.park = new ePark(this);
 
     }
 
-    public void RegisterChild(int ID, String name, int age, int creditNumber, Date expirationDate, float maxAmount)
+    public void enterDetails(String childId, String childName, String childAge) throws Exception
     {
-        boolean isValid = this.userHandler.isValid(creditNumber, expirationDate, maxAmount);
-        if (isValid)
-        {
-            CreditCard creditCard = new CreditCard(creditNumber, expirationDate);
-            systemObjects.add(creditCard);
-            GuardianAccount guardianAccount = this.userHandler.createGuardianAccount(creditCard);
-            systemObjects.add(guardianAccount);
-            Child child = this.userHandler.createChild(ID, name, age, guardianAccount);
-            systemObjects.add(child);
-            eTicket eTicket = this.userHandler.createETicket(creditCard, child, maxAmount);
-            systemObjects.add(eTicket);
-
+        int IDInt;
+        try {
+            IDInt = Integer.parseInt(childId);
+        } catch(Exception e){
+            throw new Exception("Not a valid ID.");
         }
+        if(IDInt < 0){
+            throw new Exception("Not a valid ID.");
+        }
+
+        int ageInt;
+        try {
+            ageInt = Integer.parseInt(childId);
+        } catch(Exception e){
+            throw new Exception("Not a valid age.");
+        }
+        if(ageInt < 0){
+            throw new Exception("Not a valid ageInt.");
+        }
+    }
+
+    public boolean enterCreditDetails(String creditNumber, String expirationMonth, String expirationYear, String limit) throws Exception {
+        int ccNumber;
+        try {
+            ccNumber = Integer.parseInt(creditNumber);
+        } catch(Exception e){
+            throw new Exception("Not a valid credit number.");
+        }
+        if(ccNumber < 0){
+            throw new Exception("Not a valid credit number.");
+        }
+
+//        if (expirationMonth.length() != 2 || expirationYear.length() != 2){
+//            throw new Exception("Not a valid credit expiration year.");
+//        }
+
+        int expMonth;
+        try {
+            expMonth = Integer.parseInt(expirationMonth);
+        } catch(Exception e){
+            throw new Exception("Not a valid credit expiration month.");
+        }
+        if(expMonth < 1 || expMonth > 12){
+            throw new Exception("Not a valid credit expiration month.");
+        }
+
+        int expYear;
+        try {
+            expYear = Integer.parseInt(expirationYear);
+        } catch(Exception e){
+            throw new Exception("Not a valid credit expiration year.");
+        }
+        if(expYear < 0){
+            throw new Exception("Not a valid credit expiration year.");
+        }
+
+
+        float gLimit;
+        try {
+            gLimit = Float.parseFloat(limit);
+        } catch(Exception e){
+            throw new Exception("Not a valid credit limit.");
+        }
+        if(gLimit < 0){
+            throw new Exception("Not a valid credit limit.");
+        }
+
+        return this.paymentHandler.isValidCredit(ccNumber, expMonth, expYear, limit);
     }
 
 
@@ -60,9 +115,15 @@ public class eParkSystem {
         systemObjects.remove(entryToRemove);
     }
 
-    public void ExitPark(String name)
+    public String ExitPark(String name)
     {
-
+        Child child = this.userHandler.getChildById(name);
+        if(!systemObjects.contains(child)) return "This child is not in the system.";
+        String confirmationMsg = this.userHandler.exitChild(child);
+        systemObjects.removeIf(obj -> obj instanceof Child && obj == child);
+        eTicket childTicket = child.getTicket();
+        systemObjects.removeIf(obj -> obj instanceof eTicket && obj == childTicket);
+        return confirmationMsg;
     }
 
     public void Exit()
@@ -76,6 +137,44 @@ public class eParkSystem {
 
     public ArrayList<Device> getSuitableDevices(Child child) {
         return this.park.getSuitableDevices(child);
+    }
+    public void registerNewChild(String childId, String childName, String childAge, String creditNumber, String expirationMonth, String expirationYear, String limit) {
+        this.userHandler.registerNewChild(Integer.parseInt(childId), childName, Integer.parseInt(childAge), Integer.parseInt(creditNumber), Integer.parseInt(expirationMonth), Integer.parseInt(expirationYear), Float.parseFloat(limit));
+
+    }
+
+    public void registerMeasurement(String childName, String childHeight, String childWeight) throws Exception {
+
+        float height;
+        try {
+            height = Float.parseFloat(childHeight);
+        } catch(Exception e){
+            throw new Exception("Not a valid height.");
+        }
+        if(height < 0){
+            throw new Exception("Not a valid credit height.");
+        }
+
+        float weight;
+        try {
+            weight = Float.parseFloat(childWeight);
+        } catch(Exception e){
+            throw new Exception("Not a valid weight.");
+        }
+        if(weight < 0){
+            throw new Exception("Not a valid credit weight.");
+        }
+
+        this.userHandler.addMeasurement(childName, height, weight);
+
+    /**
+     * Asks from payment handle to handle the payment.
+     * @param billToPay
+     * @param creditCard
+     * @return
+     */
+    public String chargeBill(Float billToPay, CreditCard creditCard) {
+        return this.paymentHandler.chargeBill(billToPay, creditCard);
     }
 }
 

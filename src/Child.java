@@ -12,6 +12,10 @@ public class Child {
         this.name = name;
         this.age = age;
         this.guardianAccount = guardianAccount;
+        this.guardianAccount.addChild(this);
+        this.ticket = null;
+        this.weight = 0;
+        this.height = 0;
     }
 
     public int getID() {
@@ -75,5 +79,13 @@ public class Child {
     }
     public void enterToDevice(Device device){
         this.ticket.enterToDevice(device);
+    }
+
+    /**
+     * Calculates the bill of the child.
+     * @return the bill - Float
+     */
+    public Float calculateBill() {
+        return this.ticket.calculateBill();
     }
 }

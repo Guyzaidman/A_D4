@@ -3,15 +3,17 @@ import java.util.Date;
 
 public class CreditCard {
     private int creditNumber;
-    private Date expirationDate;
+    private int expYear;
+    private int expMonth;
     private ArrayList<eTicket> tickets;
     private GuardianAccount guardianAccount;
 
-    public CreditCard(int creditNumber, Date expirationDate, GuardianAccount guardianAccount) {
+    public CreditCard(int creditNumber, int expYear, int expMonth) {
         this.creditNumber = creditNumber;
-        this.expirationDate = expirationDate;
+        this.expYear = expYear;
+        this.expMonth = expMonth;
         tickets = new ArrayList<>();
-        this.guardianAccount = guardianAccount;
+        this.guardianAccount = null;
     }
 
     public int getCreditNumber() {
@@ -20,14 +22,6 @@ public class CreditCard {
 
     public void setCreditNumber(int creditNumber) {
         this.creditNumber = creditNumber;
-    }
-
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
     }
 
     public ArrayList<eTicket> getTickets() {

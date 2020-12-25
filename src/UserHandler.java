@@ -2,24 +2,14 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class UserHandler {
-    private int ID;
     private eParkSystem parkSystem;
     private HashMap<Integer, GuardianAccount> guardians;
-    private HashMap<String, GuardianAccount> childToGuardianMap;
+    private HashMap<String, GuardianAccount> childNameToGuardianMap;
 
-    public UserHandler(int ID, eParkSystem parkSystem) {
-        this.ID = ID;
+    public UserHandler(eParkSystem parkSystem) {
         this.parkSystem = parkSystem;
         this.guardians = new HashMap<>();
-        this.childToGuardianMap = new HashMap<>();
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
+        this.childNameToGuardianMap = new HashMap<>();
     }
 
     public eParkSystem getParkSystem() {
@@ -42,18 +32,89 @@ public class UserHandler {
         return true;
     }
 
+    public void registerNewChild(int childId, String childName, int childAge, int creditNumber, int expirationMonth, int expirationYear, float limit) {
+        CreditCard creditCard = new CreditCard(creditNumber, expirationYear, expirationMonth);
+        eParkSystem.systemObjects.add(creditCard);
+
+        GuardianAccount guardianAccount = new GuardianAccount(0, creditCard,this);
+        // check ID!!!
+        this.guardians.put(guardianAccount.getID(), guardianAccount);
+        eParkSystem.systemObjects.add(guardianAccount);
+
+        Map map = new Map(guardianAccount);
+        eParkSystem.systemObjects.add(map);
+
+        Child child = new Child(childId, childName, childAge, guardianAccount);
+        eParkSystem.systemObjects.add(child);
+        this.childToGuardianMap.put(child.getName(), guardianAccount);
+
+        eTicket eTicket = new eTicket(0, child, creditCard, limit);
+        map.addETicket(eTicket);
+        eParkSystem.systemObjects.add(eTicket);
+
+    public HashMap<String, GuardianAccount> getChildNameToGuardianMap() {
+        return childNameToGuardianMap;
+    }
+
+    /**
+     * returns a Child object by given name.
+     * @param name child's name -> String
+     * @return Child.
+     */
     public Child getChildById(String name) {
-        GuardianAccount currentGuardian = this.childToGuardianMap.get(name);
+        GuardianAccount currentGuardian = this.childNameToGuardianMap.get(name);
+        if (currentGuardian == null)
+            return null;
         return currentGuardian.getChildById(name);
     }
 
-//    public GuardianAccount createGuardianAccount(CreditCard creditCard) {
+    /**
+     * Changes child's status and charge's guardian's Credit Card with given bill.
+     * @param child The exiting child.
+     * @return Confirmation message -> String.
+     */
+    public String exitChild(Child child) {
+        GuardianAccount currentGuardian = this.childNameToGuardianMap.get(child.getName());
+        Float billToPay = currentGuardian.calculateBill(child);
+        this.unregisterChild(currentGuardian, child);
+        // returns a confirmation message
+        return this.chargeBill(billToPay, currentGuardian.getCreditCard());
+    }
+
+    /**
+     * Unregisters child from the system (remove).
+     * Disconnects the eTicket from the child.
+     * @param guardianAccount the guardian account to take the child off.
+     * @param child the exiting child.
+     */
+    public void unregisterChild(GuardianAccount guardianAccount, Child child){
+        this.childNameToGuardianMap.remove(child.getName());
+        guardianAccount.removeChild(child);
+        child.getTicket().setChild(null);
+        child.setTicket(null);
+    }
+
+
+    /**
+     * Asks park system to charge.
+     * @param billToPay bill -> Float
+     * @param creditCard credit card to charge -> Credit Card.
+     * @return
+     */
+    private String chargeBill(Float billToPay, CreditCard creditCard) {
+        return this.parkSystem.chargeBill(billToPay, creditCard);
+    }
+
+    public void addMeasurement(String childName, float childHeight, float childWeight) {
+        GuardianAccount guardianAccount = this.childToGuardianMap.get(childName);
+        Child child = guardianAccount.getChildren().get(childName);
+        child.setHeight(childHeight);
+        child.setWeight(childWeight);
+    }
+
+//    public Child getChildById(String name) {
 //
 //    }
-//
-//    public Child createChild(int id, String name, int age, GuardianAccount guardianAccount) {
-//    }
-//
-//    public eTicket createETicket(CreditCard creditCard, Child child, float maxAmount) {
-//    }
+
+
 }
