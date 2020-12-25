@@ -7,11 +7,11 @@ public class CreditCard {
     private ArrayList<eTicket> tickets;
     private GuardianAccount guardianAccount;
 
-    public CreditCard(int creditNumber, Date expirationDate, GuardianAccount guardianAccount) {
+    public CreditCard(int creditNumber, Date expirationDate) {
         this.creditNumber = creditNumber;
         this.expirationDate = expirationDate;
         tickets = new ArrayList<>();
-        this.guardianAccount = guardianAccount;
+        this.guardianAccount = null;
     }
 
     public int getCreditNumber() {
