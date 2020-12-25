@@ -5,7 +5,6 @@ public class CreditCompany {
         this.paymentHandler = paymentHandler;
     }
 
-
     public PaymentHandler getPaymentHandler() {
         return paymentHandler;
     }

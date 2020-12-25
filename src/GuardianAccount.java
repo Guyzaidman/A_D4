@@ -10,6 +10,7 @@ public class GuardianAccount {
     public GuardianAccount(int ID, CreditCard creditCard, UserHandler userHandler) {
         this.ID = ID;
         this.creditCard = creditCard;
+        this.creditCard.setGuardianAccount(this);
         this.map = null;
         this.children = new HashMap<>();
         this.userHandler = userHandler;
@@ -55,6 +56,9 @@ public class GuardianAccount {
         this.userHandler = userHandler;
     }
 
+    public void addChild(Child child) {
+        this.children.put(child.getName(), child);
+  
     public Child getChildById(String name) {
         return this.children.get(name);
     }
@@ -66,5 +70,6 @@ public class GuardianAccount {
     public void removeChild(Child child) {
         this.children.remove(child.getName());
         child.setGuardianAccount(null); // child has no guardian when he exists the park??
+
     }
 }

@@ -32,6 +32,26 @@ public class UserHandler {
         return true;
     }
 
+    public void registerNewChild(int childId, String childName, int childAge, int creditNumber, int expirationMonth, int expirationYear, float limit) {
+        CreditCard creditCard = new CreditCard(creditNumber, expirationYear, expirationMonth);
+        eParkSystem.systemObjects.add(creditCard);
+
+        GuardianAccount guardianAccount = new GuardianAccount(0, creditCard,this);
+        // check ID!!!
+        this.guardians.put(guardianAccount.getID(), guardianAccount);
+        eParkSystem.systemObjects.add(guardianAccount);
+
+        Map map = new Map(guardianAccount);
+        eParkSystem.systemObjects.add(map);
+
+        Child child = new Child(childId, childName, childAge, guardianAccount);
+        eParkSystem.systemObjects.add(child);
+        this.childToGuardianMap.put(child.getName(), guardianAccount);
+
+        eTicket eTicket = new eTicket(0, child, creditCard, limit);
+        map.addETicket(eTicket);
+        eParkSystem.systemObjects.add(eTicket);
+
     public HashMap<String, GuardianAccount> getChildNameToGuardianMap() {
         return childNameToGuardianMap;
     }
@@ -74,6 +94,7 @@ public class UserHandler {
         child.setTicket(null);
     }
 
+
     /**
      * Asks park system to charge.
      * @param billToPay bill -> Float
@@ -84,13 +105,16 @@ public class UserHandler {
         return this.parkSystem.chargeBill(billToPay, creditCard);
     }
 
-//    public GuardianAccount createGuardianAccount(CreditCard creditCard) {
+    public void addMeasurement(String childName, float childHeight, float childWeight) {
+        GuardianAccount guardianAccount = this.childToGuardianMap.get(childName);
+        Child child = guardianAccount.getChildren().get(childName);
+        child.setHeight(childHeight);
+        child.setWeight(childWeight);
+    }
+
+//    public Child getChildById(String name) {
 //
 //    }
-//
-//    public Child createChild(int id, String name, int age, GuardianAccount guardianAccount) {
-//    }
-//
-//    public eTicket createETicket(CreditCard creditCard, Child child, float maxAmount) {
-//    }
+
+
 }
