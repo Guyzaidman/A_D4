@@ -1,13 +1,4 @@
 public class PaymentHandler {
-    private int ID;
-
-    public eParkSystem getPark() {
-        return park;
-    }
-
-    public void setPark(eParkSystem park) {
-        this.park = park;
-    }
 
     private eParkSystem park;
     private CreditCompany creditCompany;
@@ -16,15 +7,14 @@ public class PaymentHandler {
         this.park = eps;
         this.creditCompany = new CreditCompany(this);
     }
-
-    public int getID() {
-        return ID;
+  
+    public eParkSystem getPark() {
+        return park;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setPark(eParkSystem park) {
+        this.park = park;
     }
-
 
     public CreditCompany getCreditCompany() {
         return creditCompany;
@@ -37,5 +27,13 @@ public class PaymentHandler {
     public boolean isValidCredit(int ccNumber, int expMonth, int expYear, String limit) {
         return true;
     }
-
+    /**
+     * Communicates with the credit company and charges the credit card through the company.
+     * @param billToPay
+     * @param creditCard
+     * @return
+     */
+    public String chargeBill(Float billToPay, CreditCard creditCard) {
+        return creditCompany.chargeBill(billToPay, creditCard);
+    }
 }

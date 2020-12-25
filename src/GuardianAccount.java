@@ -58,5 +58,18 @@ public class GuardianAccount {
 
     public void addChild(Child child) {
         this.children.put(child.getName(), child);
+  
+    public Child getChildById(String name) {
+        return this.children.get(name);
+    }
+
+    public Float calculateBill(Child child) {
+        return child.calculateBill();
+    }
+
+    public void removeChild(Child child) {
+        this.children.remove(child.getName());
+        child.setGuardianAccount(null); // child has no guardian when he exists the park??
+
     }
 }
