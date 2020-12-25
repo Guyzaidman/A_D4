@@ -74,6 +74,13 @@ public class Child {
         this.guardianAccount = guardianAccount;
     }
 
+    public eTicket geteTicket() {
+        return this.ticket;
+    }
+    public void enterToDevice(Device device){
+        this.ticket.enterToDevice(device);
+    }
+
     /**
      * Calculates the bill of the child.
      * @return the bill - Float

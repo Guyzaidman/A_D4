@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ePark {
@@ -33,5 +34,18 @@ public class ePark {
 
     public void setDevices(HashMap<String, Device> devices) {
         this.devices = devices;
+    }
+
+    public ArrayList<Device> getSuitableDevices(Child child) {
+        ArrayList<Device> devices = new ArrayList<>();
+        int childAge = child.getAge();
+        float childWeight = child.getWeight();
+        float childHeight  = child.getHeight();
+        for (Device device: this.devices.values()) {
+            if (device.isSuitable(childAge, childWeight, childHeight)){
+                devices.add(device);
+            }
+        }
+        return devices;
     }
 }

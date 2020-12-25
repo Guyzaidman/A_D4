@@ -3,11 +3,12 @@ public class Device {
     private String name;
     private ePark park;
     private int minAge;
-    private int minHeight;
-    private int minWeight;
+    private float minHeight;
+    private float minWeight;
     private boolean isBroken;
+    private float price;
 
-    public Device(int ID, String name, ePark park, int minAge, int minHeight, int minWeight) {
+    public Device(int ID, String name, ePark park, int minAge, float minHeight, float minWeight, float price) {
         this.ID = ID;
         this.name = name;
         this.park = park;
@@ -15,6 +16,7 @@ public class Device {
         this.minHeight = minHeight;
         this.minWeight = minWeight;
         this.isBroken = false;
+        this.price = price;
     }
 
     public int getID() {
@@ -49,7 +51,7 @@ public class Device {
         this.minAge = minAge;
     }
 
-    public int getMinHeight() {
+    public float getMinHeight() {
         return minHeight;
     }
 
@@ -57,7 +59,7 @@ public class Device {
         this.minHeight = minHeight;
     }
 
-    public int getMinWeight() {
+    public float getMinWeight() {
         return minWeight;
     }
 
@@ -72,4 +74,21 @@ public class Device {
     public void setBroken(boolean broken) {
         isBroken = broken;
     }
+
+    public float getPrice() { return price; }
+
+
+    public boolean isSuitable(int childAge, float childWeight, float childHeight) {
+        if (childAge < minAge) return false;
+        if (childWeight < minWeight) return false;
+        if (childHeight < minHeight) return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + this.name + ", Price: " + this.price;
+    }
+
+
 }
