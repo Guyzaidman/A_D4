@@ -108,10 +108,30 @@ public class eTicket {
     }
 
     public void enterToDevice(Device device) {
-    
+        device.gotEnterToByeTicket(this);
     }
         
     public Float calculateBill() {
         return this.getBalance();
+    }
+
+    public void exitFromDevice() {
+        String deviceName = this.location;
+        Device device = this.getDeviceByName(deviceName);
+        Entrance entry = this.entranceTable.get(device).get(0);
+        device.gotExitByeTicket(this,entry);
+    }
+
+    private Device getDeviceByName(String deviceName) {
+        for (Device device: this.entranceTable.keySet()) {
+            if(device.getName().equals(deviceName)){
+                return device;
+            }
+        }
+        return null;
+    }
+
+    public void removeUsedEntry(Entrance entry, Device device) {
+        this.entranceTable.get(device).remove(entry);
     }
 }

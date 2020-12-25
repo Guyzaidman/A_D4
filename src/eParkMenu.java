@@ -79,21 +79,21 @@ public class eParkMenu {
                 }
             }
 
-//            else if (userInput.startsWith("manageTicket")){
-//                String childID = userInput.substring(13);
-//                Child child = eps.getChildById(childID);
-//
-//                eTicket eTicket = child.geteTicket();
-//
-//                //displaying eTicket details
-//                System.out.println(eTicket);
-//
-//                System.out.println("Choose an action:");
-//                System.out.println("\t- add <ride name>");
-//                System.out.println("\t- remove <ride name>");
-//
-//                String choice = scanner.nextLine();
-//
+            else if (userInput.startsWith("manageTicket")){
+                String childID = userInput.substring(13);
+                Child child = eps.getChildById(childID);
+
+                eTicket ticket = child.geteTicket();
+
+                //displaying eTicket details
+                System.out.println(ticket);
+
+                System.out.println("Choose an action:");
+                System.out.println("\t- add <ride name>");
+                System.out.println("\t- remove <ride name>");
+
+                String choice = scanner.nextLine();
+
                 if (choice.toLowerCase().startsWith("add")){
                     ArrayList<Device> devices = eps.getSuitableDevices(child);
                     HashMap<Device,Integer> entries = new HashMap<>();
@@ -147,44 +147,44 @@ public class eParkMenu {
                         }
                     }
                 }
-                else if (choice.toLowerCase().startsWith("remove")){
+                else if (choice.toLowerCase().startsWith("remove")) {
                     int num = 0;
                     int lenArray;
                     ArrayList<Device> devicesList = new ArrayList<>();
-                    for (Device device: ticket.getEntranceTable().keySet()){
+                    for (Device device : ticket.getEntranceTable().keySet()) {
                         lenArray = ticket.getEntranceTable().get(device).size();
-                        System.out.println(num+ ". " + device.toString() + ", amount of entrance: " + lenArray);
+                        System.out.println(num + ". " + device.toString() + ", amount of entrance: " + lenArray);
                         num++;
                         devicesList.add(device);
                     }
                     System.out.println("\nChoose device number to remove from the above\nTap any other to end.");
                     choice = scanner.nextLine();
-                    try{
+                    try {
                         int deviceNum = Integer.valueOf(choice);
-                        if (deviceNum >= num || deviceNum < 0) throw new Exception("Invalid device number.\nDidn't remove anything");
+                        if (deviceNum >= num || deviceNum < 0)
+                            throw new Exception("Invalid device number.\nDidn't remove anything");
                         lenArray = ticket.getEntranceTable().get(devicesList.get(deviceNum)).size();
                         System.out.println("Type amount of Entries to remove:");
                         choice = scanner.nextLine();
                         int numOfEntries = Integer.valueOf(choice);
-                        if (numOfEntries > lenArray){
+                        if (numOfEntries > lenArray) {
                             throw new Exception("Invalid amount to remove.\nDidn't remove anything");
                         }
-                        for (int i=0; i<numOfEntries; i++){
+                        for (int i = 0; i < numOfEntries; i++) {
                             eps.RemoveRide(devicesList.get(deviceNum), ticket);
                         }
 
-                    }
-                    catch (NumberFormatException e){
+                    } catch (NumberFormatException e) {
 
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-//                else{
-//                    System.out.println("Invalid input");
-//                }
-//
-//            }
+                }
+                else{
+                    System.out.println("Invalid input");
+                }
+
+            }
 
             else if (userInput.equals("exitPark")){
                 System.out.println("Enter child name:");
@@ -202,9 +202,6 @@ public class eParkMenu {
             else{
                 System.out.println("not a valid command!");
             }
-
         }
-
-
     }
 }

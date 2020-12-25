@@ -91,4 +91,11 @@ public class Device {
     }
 
 
+    public void gotEnterToByeTicket(eTicket ticket) {
+        this.park.DeviceGotEnter(this,ticket);
+    }
+
+    public void gotExitByeTicket(eTicket ticket, Entrance entry) {
+        this.park.gotExitFromDevice(this,ticket,entry);
+    }
 }

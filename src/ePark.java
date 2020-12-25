@@ -2,22 +2,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ePark {
-    private int ID;
     private eParkSystem parkSystem;
     private HashMap<String,Device> devices;
 
-    public ePark(int ID, eParkSystem parkSystem) {
-        this.ID = ID;
+    public ePark(eParkSystem parkSystem) {
         this.parkSystem = parkSystem;
         this.devices = new HashMap<>();
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public eParkSystem getParkSystem() {
@@ -47,5 +37,13 @@ public class ePark {
             }
         }
         return devices;
+    }
+
+    public void DeviceGotEnter(Device device, eTicket ticket) {
+        this.parkSystem.EnterToDeviceHandler(device,ticket);
+    }
+
+    public void gotExitFromDevice(Device device, eTicket ticket, Entrance entry) {
+        this.parkSystem.ExitFromDeviceHandler(device,ticket,entry);
     }
 }

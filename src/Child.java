@@ -80,6 +80,9 @@ public class Child {
     public void enterToDevice(Device device){
         this.ticket.enterToDevice(device);
     }
+    public void exitFromDevice(){
+        this.ticket.exitFromDevice();
+    }
 
     /**
      * Calculates the bill of the child.
