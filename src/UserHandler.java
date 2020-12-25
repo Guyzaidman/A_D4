@@ -43,7 +43,8 @@ public class UserHandler {
     }
 
     public Child getChildById(String name) {
-
+        GuardianAccount currentGuardian = this.childToGuardianMap.get(name);
+        return currentGuardian.getChildById(name);
     }
 
 //    public GuardianAccount createGuardianAccount(CreditCard creditCard) {

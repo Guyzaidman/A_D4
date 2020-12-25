@@ -69,4 +69,11 @@ public class Child {
     public void setGuardianAccount(GuardianAccount guardianAccount) {
         this.guardianAccount = guardianAccount;
     }
+
+    public eTicket geteTicket() {
+        return this.ticket;
+    }
+    public void enterToDevice(Device device){
+        this.ticket.enterToDevice(device);
+    }
 }

@@ -22,6 +22,13 @@ public class eTicket {
         this.location = "Park Entrance";
     }
 
+    public boolean isOutOfBalance(float devicePrice) {
+        if (this.balance + devicePrice > this.guardianLimit){
+            return true;
+        }
+        return false;
+    }
+
     public int getID() {
         return ID;
     }
@@ -84,5 +91,31 @@ public class eTicket {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public void addEntry(Device device, Entrance newEntry) {
+        if (this.entranceTable.containsKey(device)){
+            ArrayList<Entrance> currEntrance = this.entranceTable.get(device);
+            currEntrance.add(newEntry);
+            this.entranceTable.replace(device, currEntrance);
+        }
+        else{
+            ArrayList<Entrance> currEntrance = new ArrayList<>();
+            currEntrance.add(newEntry);
+            this.entranceTable.put(device, currEntrance);
+        }
+        this.balance += device.getPrice();
+    }
+
+    public Entrance removeEntry(Device device) {
+        ArrayList<Entrance> oldList = this.entranceTable.get(device);
+        Entrance entryToRemove = oldList.remove(0);
+        this.entranceTable.replace(device,oldList);
+        this.balance -= device.getPrice();
+        return entryToRemove;
+    }
+
+    public void enterToDevice(Device device) {
+        
     }
 }

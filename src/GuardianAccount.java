@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class GuardianAccount {
     private int ID;
-    private HashMap<Integer,Child> children;
+    private HashMap<String,Child> children;
     private CreditCard creditCard;
     private Map map;
     private UserHandler userHandler;
@@ -23,11 +23,11 @@ public class GuardianAccount {
         this.ID = ID;
     }
 
-    public HashMap<Integer, Child> getChildren() {
+    public HashMap<String, Child> getChildren() {
         return children;
     }
 
-    public void setChildren(HashMap<Integer, Child> children) {
+    public void setChildren(HashMap<String, Child> children) {
         this.children = children;
     }
 
@@ -53,5 +53,9 @@ public class GuardianAccount {
 
     public void setUserHandler(UserHandler userHandler) {
         this.userHandler = userHandler;
+    }
+
+    public Child getChildById(String name) {
+        return this.children.get(name);
     }
 }

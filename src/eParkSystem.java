@@ -6,11 +6,13 @@ public class eParkSystem {
 
     private UserHandler userHandler;
     private PaymentHandler paymentHandler;
+    private ePark park;
     public static ArrayList<Object> systemObjects = new ArrayList<>();
 
     public eParkSystem() {
         this.userHandler = new UserHandler();
         this.paymentHandler = new PaymentHandler();
+        this.park = new ePark(1,this);
 
     }
 
@@ -37,14 +39,25 @@ public class eParkSystem {
 
     }
 
-    public void AddRide()
+    public boolean AddRide(Device device, eTicket ticket)
     {
-
+        float devicePrice = device.getPrice();
+        boolean outOfBalance = ticket.isOutOfBalance(devicePrice);
+        if (outOfBalance){
+            return false;
+        }
+        else{
+            Entrance newEntry = new Entrance(device,ticket);
+            systemObjects.add(newEntry);
+            ticket.addEntry(device,newEntry);
+            return true;
+        }
     }
 
-    public void RemoveRide()
+    public void RemoveRide(Device device, eTicket ticket)
     {
-
+        Entrance entryToRemove = ticket.removeEntry(device);
+        systemObjects.remove(entryToRemove);
     }
 
     public void ExitPark(String name)
@@ -55,6 +68,14 @@ public class eParkSystem {
     public void Exit()
     {
         System.exit(0);
+    }
+
+    public Child getChildById(String childID) {
+        return this.userHandler.getChildById(childID);
+    }
+
+    public ArrayList<Device> getSuitableDevices(Child child) {
+        return this.park.getSuitableDevices(child);
     }
 }
 

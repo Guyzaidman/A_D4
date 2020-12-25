@@ -1,22 +1,12 @@
 public class Entrance {
-    private int ID;
     private Device device;
     private eTicket ticket;
     private boolean inUse;
 
-    public Entrance(int ID, Device device, eTicket ticket) {
-        this.ID = ID;
+    public Entrance(Device device, eTicket ticket) {
         this.device = device;
         this.ticket = ticket;
         this.inUse = false;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public Device getDevice() {
