@@ -148,25 +148,25 @@ public class eParkSystem {
         float height;
         try {
             height = Float.parseFloat(childHeight);
-        } catch(Exception e){
+        } catch (Exception e) {
             throw new Exception("Not a valid height.");
         }
-        if(height < 0){
+        if (height < 0) {
             throw new Exception("Not a valid credit height.");
         }
 
         float weight;
         try {
             weight = Float.parseFloat(childWeight);
-        } catch(Exception e){
+        } catch (Exception e) {
             throw new Exception("Not a valid weight.");
         }
-        if(weight < 0){
+        if (weight < 0) {
             throw new Exception("Not a valid credit weight.");
         }
 
         this.userHandler.addMeasurement(childName, height, weight);
-
+    }
     /**
      * Asks from payment handle to handle the payment.
      * @param billToPay
@@ -175,6 +175,21 @@ public class eParkSystem {
      */
     public String chargeBill(Float billToPay, CreditCard creditCard) {
         return this.paymentHandler.chargeBill(billToPay, creditCard);
+    }
+
+    public void EnterToDeviceHandler(Device device, eTicket ticket) {
+        ticket.setLocation(device.getName());
+    }
+
+    public void ExitFromDeviceHandler(Device device, eTicket ticket, Entrance entry) {
+        if(device.isBroken()){
+            // do something
+        }
+        else{
+            ticket.removeUsedEntry(entry,device);
+            systemObjects.remove(entry);
+        }
+
     }
 }
 

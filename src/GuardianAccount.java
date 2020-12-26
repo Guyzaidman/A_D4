@@ -58,7 +58,7 @@ public class GuardianAccount {
 
     public void addChild(Child child) {
         this.children.put(child.getName(), child);
-  
+    }
     public Child getChildById(String name) {
         return this.children.get(name);
     }

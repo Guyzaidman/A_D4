@@ -36,7 +36,7 @@ public class UserHandler {
         CreditCard creditCard = new CreditCard(creditNumber, expirationYear, expirationMonth);
         eParkSystem.systemObjects.add(creditCard);
 
-        GuardianAccount guardianAccount = new GuardianAccount(0, creditCard,this);
+        GuardianAccount guardianAccount = new GuardianAccount(0, creditCard, this);
         // check ID!!!
         this.guardians.put(guardianAccount.getID(), guardianAccount);
         eParkSystem.systemObjects.add(guardianAccount);
@@ -46,12 +46,12 @@ public class UserHandler {
 
         Child child = new Child(childId, childName, childAge, guardianAccount);
         eParkSystem.systemObjects.add(child);
-        this.childToGuardianMap.put(child.getName(), guardianAccount);
+        this.childNameToGuardianMap.put(child.getName(), guardianAccount);
 
         eTicket eTicket = new eTicket(0, child, creditCard, limit);
         map.addETicket(eTicket);
         eParkSystem.systemObjects.add(eTicket);
-
+    }
     public HashMap<String, GuardianAccount> getChildNameToGuardianMap() {
         return childNameToGuardianMap;
     }
@@ -106,7 +106,7 @@ public class UserHandler {
     }
 
     public void addMeasurement(String childName, float childHeight, float childWeight) {
-        GuardianAccount guardianAccount = this.childToGuardianMap.get(childName);
+        GuardianAccount guardianAccount = this.childNameToGuardianMap.get(childName);
         Child child = guardianAccount.getChildren().get(childName);
         child.setHeight(childHeight);
         child.setWeight(childWeight);
