@@ -2,9 +2,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+
 public class eParkMenu {
     public static void main(String[] args) {
         eParkSystem eps = new eParkSystem();
+        Device mambaRide = new ExtremeDevice(1,"Mamba Ride", eps.getPark(), 12, 140, 0,10);
+        Device giantWheel = new Device(2,"Giant Wheel", eps.getPark(), 0,0,0,10);
+        Device carrousel = new Device(3, "Carrousel", eps.getPark(), 8,0,0,10);
+        eps.addDeviceToPark(mambaRide);
+        eps.addDeviceToPark(giantWheel);
+        eps.addDeviceToPark(carrousel);
+
 
         //main loop
         while (true){
@@ -107,7 +115,7 @@ public class eParkMenu {
                         choice = scanner.nextLine();
                         try{
                             int deviceNum = Integer.valueOf(choice);
-                            if (deviceNum >= num || deviceNum < 0) break;
+                            if (deviceNum >= num || deviceNum < 0) throw new Exception();
                             System.out.println("Type amount of Entries to add:");
                             choice = scanner.nextLine();
                             int numOfEntries = Integer.valueOf(choice);
@@ -118,14 +126,15 @@ public class eParkMenu {
                             else{
                                 entries.put(devices.get(deviceNum), numOfEntries);
                             }
+                            System.out.println("Notice: Entrances will be added after typing other key.");
                         }
                         catch(Exception e){
                             if (entries.size() == 0) break;
                             for (Device device: entries.keySet()){
                                 if (device instanceof ExtremeDevice){
-                                    System.out.println("The device " + device.getName() + " is Extreme.\nType 'yes' to Approve or other to cancel");
+                                    System.out.println("The device " + device.getName() + " is Extreme.\nType 'y' to Approve or other to cancel");
                                     choice = scanner.nextLine();
-                                    if (choice.toLowerCase() != "yes"){
+                                    if (choice.toLowerCase().equals('y')){
                                         entries.remove(device);
                                     }
                                 }
@@ -135,7 +144,7 @@ public class eParkMenu {
                                 for (int i = 0; i < entries.get(device); i++){
                                     boolean ifSuccess = eps.AddRide(device, ticket);
                                     if (!ifSuccess) {
-                                        System.out.println("Out of balance.\nThe action of add entrance number" + i + "of device " + device.getName() + " not completed!");
+                                        System.out.println("Out of balance.\nThe action of add entrance number " + (i+1) + " to device " + device.getName() + " was not completed!");
                                         allSuccess = false;
                                     }
                                 }
@@ -173,6 +182,7 @@ public class eParkMenu {
                         for (int i = 0; i < numOfEntries; i++) {
                             eps.RemoveRide(devicesList.get(deviceNum), ticket);
                         }
+                        System.out.println("Entrances was successfully removed!");
 
                     } catch (NumberFormatException e) {
 

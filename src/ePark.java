@@ -22,8 +22,8 @@ public class ePark {
         return devices;
     }
 
-    public void setDevices(HashMap<String, Device> devices) {
-        this.devices = devices;
+    public void setDevices(String name, Device device) {
+        this.devices.put(name,device);
     }
 
     public ArrayList<Device> getSuitableDevices(Child child) {
