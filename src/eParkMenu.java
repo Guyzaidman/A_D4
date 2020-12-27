@@ -13,11 +13,11 @@ public class eParkMenu {
         eps.addDeviceToPark(giantWheel);
         eps.addDeviceToPark(carrousel);
 
-
+        System.out.println("Welcome to our magical park!");
         //main loop
         while (true){
-            System.out.println("Welcome to our magical park!");
-            System.out.println("choose one of the following Commands:");
+
+            System.out.println("Choose one of the following Commands:");
 
             System.out.println("\t- register");
             System.out.println("\t- manageTicket <child name>");
@@ -88,8 +88,16 @@ public class eParkMenu {
             }
 
             else if (userInput.startsWith("manageTicket")){
+                if(userInput.length() < 14){
+                    System.out.println("You have to enter a name, please try again.");
+                    continue;
+                }
                 String childID = userInput.substring(13);
                 Child child = eps.getChildById(childID);
+                if(child == null){
+                    System.out.println("You have entered a wrong name, please try again.");
+                    continue;
+                }
 
                 eTicket ticket = child.geteTicket();
 
