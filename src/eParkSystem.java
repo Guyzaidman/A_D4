@@ -16,6 +16,10 @@ public class eParkSystem {
 
     }
 
+    public ePark getPark() {
+        return park;
+    }
+
     public void enterDetails(String childId, String childName, String childAge) throws Exception
     {
         int IDInt;
@@ -190,6 +194,11 @@ public class eParkSystem {
             systemObjects.remove(entry);
         }
 
+    }
+
+    public void addDeviceToPark(Device device) {
+        systemObjects.add(device);
+        this.park.setDevices(device.getName(),device);
     }
 }
 

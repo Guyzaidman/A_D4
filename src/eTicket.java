@@ -134,4 +134,22 @@ public class eTicket {
     public void removeUsedEntry(Entrance entry, Device device) {
         this.entranceTable.get(device).remove(entry);
     }
+
+    @Override
+    public String toString() {
+        String out = this.child.getName() + "'s eTicket:\n";
+        out += "\tBalance: " + this.balance;
+        out += "\n\tLimit: " + this.guardianLimit;
+        out += "\n\tLocation: " + this.location;
+        out += "\n\tEntrance list: ";
+        if (this.entranceTable.size() == 0){
+            out += "empty\n";
+            return out;
+        }
+        for (Device device: this.entranceTable.keySet()) {
+            out += device.getName() + ", Entrance's Number: " + this.entranceTable.get(device).size() + ". ";
+        }
+        out += "\n";
+        return out;
+    }
 }
