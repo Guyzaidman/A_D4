@@ -1,5 +1,5 @@
 public class Device {
-    private int ID;
+//    private int ID;
     private String name;
     private ePark park;
     private int minAge;
@@ -8,8 +8,8 @@ public class Device {
     private boolean isBroken;
     private float price;
 
-    public Device(int ID, String name, ePark park, int minAge, float minHeight, float minWeight, float price) {
-        this.ID = ID;
+    public Device(String name, ePark park, int minAge, float minHeight, float minWeight, float price) {
+//        this.ID = ID;
         this.name = name;
         this.park = park;
         this.minAge = minAge;
@@ -19,13 +19,13 @@ public class Device {
         this.price = price;
     }
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+//    public int getID() {
+//        return ID;
+//    }
+//
+//    public void setID(int ID) {
+//        this.ID = ID;
+//    }
 
     public String getName() {
         return name;
