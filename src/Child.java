@@ -50,10 +50,6 @@ public class Child {
         this.weight = weight;
     }
 
-    public GuardianAccount getGuardianAccount() {
-        return guardianAccount;
-    }
-
     public void setGuardianAccount(GuardianAccount guardianAccount) {
         this.guardianAccount = guardianAccount;
     }
