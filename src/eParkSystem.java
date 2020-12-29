@@ -6,17 +6,23 @@ public class eParkSystem {
     private UserHandler userHandler;
     private PaymentHandler paymentHandler;
     private ePark park;
+    private DeviceFactory deviceFactory;
     public static ArrayList<Object> systemObjects = new ArrayList<>();
 
     public eParkSystem() {
         this.userHandler = new UserHandler(this);
         this.paymentHandler = new PaymentHandler(this);
         this.park = new ePark(this);
+        this.deviceFactory = new DeviceFactory();
 
     }
 
     public ePark getPark() {
         return park;
+    }
+
+    public DeviceFactory getDeviceFactory() {
+        return deviceFactory;
     }
 
     public static ArrayList<Object> getSystemObjects(){

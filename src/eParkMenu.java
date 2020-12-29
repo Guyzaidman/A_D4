@@ -6,9 +6,14 @@ import java.util.Scanner;
 public class eParkMenu {
     public static void main(String[] args) {
         eParkSystem eps = new eParkSystem();
-        Device mambaRide = new ExtremeDevice(1,"Mamba Ride", eps.getPark(), 12, 140, 0,10);
-        Device giantWheel = new Device(2,"Giant Wheel", eps.getPark(), 0,0,0,10);
-        Device carrousel = new Device(3, "Carrousel", eps.getPark(), 8,0,0,10);
+
+        Device mambaRide = eps.getDeviceFactory().buildDevice("Mamba Ride", true, eps.getPark(), 12, 140, 0,10);
+        Device giantWheel = eps.getDeviceFactory().buildDevice("Giant Wheel", false, eps.getPark(), 0,0,0,6);
+        Device carrousel = eps.getDeviceFactory().buildDevice("Carrousel", false, eps.getPark(), 8,0,0,2);
+
+//        Device mambaRide = new ExtremeDevice("Mamba Ride", eps.getPark(), 12, 140, 0,10);
+//        Device giantWheel = new Device("Giant Wheel", eps.getPark(), 0,0,0,10);
+//        Device carrousel = new Device("Carrousel", eps.getPark(), 8,0,0,10);
 
         ArrayList<Object> objects = eParkSystem.getSystemObjects();
 

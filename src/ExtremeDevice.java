@@ -1,7 +1,7 @@
 public class ExtremeDevice extends Device{
 
-    public ExtremeDevice(int ID, String name, ePark park, int minAge, float minHeight, float minWeight, float price) {
-        super(ID, name, park, minAge, minHeight, minWeight, price);
+    public ExtremeDevice(String name, ePark park, int minAge, float minHeight, float minWeight, float price) {
+        super(name, park, minAge, minHeight, minWeight, price);
     }
 
     @Override
