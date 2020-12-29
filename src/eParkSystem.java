@@ -141,10 +141,16 @@ public class eParkSystem {
     {
         Child child = this.userHandler.getChildById(name);
         if(!systemObjects.contains(child)) return "This child is not in the system.";
-        String confirmationMsg = this.userHandler.exitChild(child);
+
         systemObjects.removeIf(obj -> obj instanceof Child && obj == child);
         eTicket childTicket = child.getTicket();
+        for(ArrayList<Entrance> alE: childTicket.getEntranceTable().values()){
+            for(Entrance e: alE){
+                systemObjects.removeIf(obj -> obj instanceof Entrance && obj == e);
+            }
+        }
         systemObjects.removeIf(obj -> obj instanceof eTicket && obj == childTicket);
+        String confirmationMsg = this.userHandler.exitChild(child);
         return confirmationMsg;
     }
 

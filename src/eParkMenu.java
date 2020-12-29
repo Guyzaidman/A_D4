@@ -97,7 +97,7 @@ public class eParkMenu {
                 }
             }
 
-            else if (userInput.startsWith("manageTicket")){
+            else if (userInput.toLowerCase().startsWith("manageticket")){
                 if(userInput.length() < 14){
                     System.out.println("You have to enter a name, please try again.");
                     continue;
@@ -214,14 +214,14 @@ public class eParkMenu {
 
             }
 
-            else if (userInput.equals("exitPark")){
+            else if (userInput.toLowerCase().equals("exitpark")){
                 System.out.println("Enter child name:");
                 String name = scanner.nextLine();
                 // prints the confirmation message.
                 System.out.println(eps.ExitPark(name));
             }
 
-            else if (userInput.equals("exit")){
+            else if (userInput.toLowerCase().equals("exit")){
                 eps.Exit();
                 System.out.println("Goodbye");
                 break;
