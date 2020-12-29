@@ -27,7 +27,11 @@ public class eParkMenu {
             Scanner scanner = new Scanner(System.in);  // Create a Scanner object
             String userInput = scanner.nextLine();  // Read user input
 
-            if (userInput.equals("register")) {
+            if (userInput.toLowerCase().equals("register")) {
+                System.out.println("If you already have an active guardian account, type your Guardian ID.");
+                System.out.println("If not, enter -1");
+                String hasAccount =  scanner.nextLine();
+
                 System.out.println("please enter child's ID:");
                 String childId = scanner.nextLine();
 
@@ -38,12 +42,15 @@ public class eParkMenu {
                 String childAge = scanner.nextLine();
 
                 try{
-                    eps.enterDetails(childId, childName, childAge);
+                    eps.enterDetails(childId, childAge, hasAccount);
                 }
                 catch (Exception e){
                     System.out.println(e.getMessage());
                     continue;
                 }
+
+                int makeAccount = Integer.parseInt(hasAccount);
+
 
                 System.out.println("please enter your credit number:");
                 String creditNumber = scanner.nextLine();
@@ -71,7 +78,7 @@ public class eParkMenu {
                 }
 
                 // All creations
-                eps.registerNewChild(childId, childName, childAge, creditNumber, expirationMonth, expirationYear, limit);
+                eps.registerNewChild(childId, childName, childAge, creditNumber, expirationMonth, expirationYear, limit, makeAccount);
 
                 System.out.println("please enter your child's weight:");
                 String childWeight = scanner.nextLine();

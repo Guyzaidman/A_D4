@@ -32,11 +32,20 @@ public class UserHandler {
         return true;
     }
 
-    public void registerNewChild(int childId, String childName, int childAge, int creditNumber, int expirationMonth, int expirationYear, float limit) {
+    public void registerNewChild(int childId, String childName, int childAge, int creditNumber, int expirationMonth, int expirationYear, float limit, int makeAccount) {
         CreditCard creditCard = new CreditCard(creditNumber, expirationYear, expirationMonth);
         eParkSystem.systemObjects.add(creditCard);
 
-        GuardianAccount guardianAccount = new GuardianAccount(0, creditCard, this);
+        GuardianAccount guardianAccount;
+        if (makeAccount == -1) {
+            guardianAccount = new GuardianAccount(creditCard, this);
+            System.out.println("Your Guardian Account ID is: " + guardianAccount.getID());
+            System.out.println("If you want to add more children use it.");
+        }
+        else{
+            guardianAccount = this.getGuardianByID(makeAccount);
+        }
+
         // check ID!!!
         this.guardians.put(guardianAccount.getID(), guardianAccount);
         eParkSystem.systemObjects.add(guardianAccount);
@@ -115,6 +124,18 @@ public class UserHandler {
 //    public Child getChildById(String name) {
 //
 //    }
+
+    public GuardianAccount getGuardianByID(int id){
+        GuardianAccount g;
+        try{
+            g = this.getGuardians().get(id);
+        }
+        catch (Exception e){
+            g = null;
+        }
+
+        return g;
+    }
 
 
 }

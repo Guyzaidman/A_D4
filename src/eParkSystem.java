@@ -20,7 +20,7 @@ public class eParkSystem {
         return park;
     }
 
-    public void enterDetails(String childId, String childName, String childAge) throws Exception
+    public void enterDetails(String childId, String childAge, String hasAccount) throws Exception
     {
         int IDInt;
         try {
@@ -34,12 +34,27 @@ public class eParkSystem {
 
         int ageInt;
         try {
-            ageInt = Integer.parseInt(childId);
+            ageInt = Integer.parseInt(childAge);
         } catch(Exception e){
             throw new Exception("Not a valid age.");
         }
         if(ageInt < 0){
             throw new Exception("Not a valid ageInt.");
+        }
+
+        int hasAccountInt;
+        try {
+            hasAccountInt = Integer.parseInt(hasAccount);
+        } catch(Exception e){
+            throw new Exception("Not a valid Guardian ID Account.");
+        }
+        if(hasAccountInt < -1){
+            throw new Exception("Not a valid Guardian ID Account.");
+        }
+        if (hasAccountInt != -1){
+            if (this.userHandler.getGuardianByID(hasAccountInt) == null){
+                throw new Exception("Not a valid Guardian ID Account.");
+            }
         }
     }
 
@@ -142,9 +157,10 @@ public class eParkSystem {
     public ArrayList<Device> getSuitableDevices(Child child) {
         return this.park.getSuitableDevices(child);
     }
-    public void registerNewChild(String childId, String childName, String childAge, String creditNumber, String expirationMonth, String expirationYear, String limit) {
-        this.userHandler.registerNewChild(Integer.parseInt(childId), childName, Integer.parseInt(childAge), Integer.parseInt(creditNumber), Integer.parseInt(expirationMonth), Integer.parseInt(expirationYear), Float.parseFloat(limit));
 
+    public void registerNewChild(String childId, String childName, String childAge, String creditNumber, String expirationMonth, String expirationYear, String limit, int makeAccount) {
+
+        this.userHandler.registerNewChild(Integer.parseInt(childId), childName, Integer.parseInt(childAge), Integer.parseInt(creditNumber), Integer.parseInt(expirationMonth), Integer.parseInt(expirationYear), Float.parseFloat(limit), makeAccount);
     }
 
     public void registerMeasurement(String childName, String childHeight, String childWeight) throws Exception {

@@ -1,14 +1,17 @@
 import java.util.HashMap;
 
 public class GuardianAccount {
-    private int ID;
+    private static int ID = 0;
+    private int id;
     private HashMap<String,Child> children;
     private CreditCard creditCard;
     private Map map;
     private UserHandler userHandler;
 
-    public GuardianAccount(int ID, CreditCard creditCard, UserHandler userHandler) {
-        this.ID = ID;
+
+    public GuardianAccount(CreditCard creditCard, UserHandler userHandler) {
+        this.id = GuardianAccount.ID;
+        GuardianAccount.ID++;
         this.creditCard = creditCard;
         this.creditCard.setGuardianAccount(this);
         this.map = null;
@@ -17,12 +20,12 @@ public class GuardianAccount {
     }
 
     public int getID() {
-        return ID;
+        return this.id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+//    public void setID(int ID) {
+//        this.id = ID;
+//    }
 
     public HashMap<String, Child> getChildren() {
         return children;
