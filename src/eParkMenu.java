@@ -9,6 +9,9 @@ public class eParkMenu {
         Device mambaRide = new ExtremeDevice(1,"Mamba Ride", eps.getPark(), 12, 140, 0,10);
         Device giantWheel = new Device(2,"Giant Wheel", eps.getPark(), 0,0,0,10);
         Device carrousel = new Device(3, "Carrousel", eps.getPark(), 8,0,0,10);
+
+        ArrayList<Object> objects = eParkSystem.getSystemObjects();
+
         eps.addDeviceToPark(mambaRide);
         eps.addDeviceToPark(giantWheel);
         eps.addDeviceToPark(carrousel);
@@ -112,8 +115,8 @@ public class eParkMenu {
                 System.out.println(ticket);
 
                 System.out.println("Choose an action:");
-                System.out.println("\t- add <ride name>");
-                System.out.println("\t- remove <ride name>");
+                System.out.println("\t- add");
+                System.out.println("\t- remove");
 
                 String choice = scanner.nextLine();
 

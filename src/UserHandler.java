@@ -37,21 +37,20 @@ public class UserHandler {
         eParkSystem.systemObjects.add(creditCard);
 
         GuardianAccount guardianAccount;
+        Map map;
         if (makeAccount == -1) {
             guardianAccount = new GuardianAccount(creditCard, this);
+            this.guardians.put(guardianAccount.getID(), guardianAccount);
+            eParkSystem.systemObjects.add(guardianAccount);
+            map = new Map(guardianAccount);
+            eParkSystem.systemObjects.add(map);
             System.out.println("Your Guardian Account ID is: " + guardianAccount.getID());
             System.out.println("If you want to add more children use it.");
         }
         else{
             guardianAccount = this.getGuardianByID(makeAccount);
+            map = guardianAccount.getMap();
         }
-
-        // check ID!!!
-        this.guardians.put(guardianAccount.getID(), guardianAccount);
-        eParkSystem.systemObjects.add(guardianAccount);
-
-        Map map = new Map(guardianAccount);
-        eParkSystem.systemObjects.add(map);
 
         Child child = new Child(childId, childName, childAge, guardianAccount);
         eParkSystem.systemObjects.add(child);

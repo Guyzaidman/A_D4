@@ -102,7 +102,12 @@ public class eTicket {
     public Entrance removeEntry(Device device) {
         ArrayList<Entrance> oldList = this.entranceTable.get(device);
         Entrance entryToRemove = oldList.remove(0);
-        this.entranceTable.replace(device,oldList);
+        if (oldList.size() == 0){
+            this.entranceTable.remove(device);
+        }
+        else{
+            this.entranceTable.replace(device,oldList);
+        }
         this.balance -= device.getPrice();
         return entryToRemove;
     }
@@ -147,7 +152,7 @@ public class eTicket {
             return out;
         }
         for (Device device: this.entranceTable.keySet()) {
-            out += device.getName() + ", Entrance's Number: " + this.entranceTable.get(device).size() + ". ";
+            out += device.getName() + ", Number of Entrances: " + this.entranceTable.get(device).size() + ". ";
         }
         out += "\n";
         return out;

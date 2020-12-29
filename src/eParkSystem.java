@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-
 public class eParkSystem {
 
     private UserHandler userHandler;
@@ -18,6 +17,10 @@ public class eParkSystem {
 
     public ePark getPark() {
         return park;
+    }
+
+    public static ArrayList<Object> getSystemObjects(){
+        return eParkSystem.systemObjects;
     }
 
     public void enterDetails(String childId, String childAge, String hasAccount) throws Exception
