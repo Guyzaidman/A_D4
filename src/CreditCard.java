@@ -16,26 +16,6 @@ public class CreditCard {
         this.guardianAccount = null;
     }
 
-    public int getCreditNumber() {
-        return creditNumber;
-    }
-
-    public void setCreditNumber(int creditNumber) {
-        this.creditNumber = creditNumber;
-    }
-
-    public ArrayList<eTicket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(ArrayList<eTicket> tickets) {
-        this.tickets = tickets;
-    }
-
-    public GuardianAccount getGuardianAccount() {
-        return guardianAccount;
-    }
-
     public void setGuardianAccount(GuardianAccount guardianAccount) {
         this.guardianAccount = guardianAccount;
     }

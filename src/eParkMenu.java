@@ -22,6 +22,9 @@ public class eParkMenu {
         eps.addDeviceToPark(carrousel);
 
         System.out.println("Welcome to our magical park!");
+
+        Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+
         //main loop
         while (true){
 
@@ -32,7 +35,7 @@ public class eParkMenu {
             System.out.println("\t- exitPark");
             System.out.println("\t- exit");
 
-            Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+
             String userInput = scanner.nextLine();  // Read user input
 
             if (userInput.toLowerCase().equals("register")) {
@@ -50,7 +53,7 @@ public class eParkMenu {
                 String childAge = scanner.nextLine();
 
                 try{
-                    eps.enterDetails(childId, childAge, hasAccount);
+                    eps.enterDetails(childId, childName, childAge, hasAccount);
                 }
                 catch (Exception e){
                     System.out.println(e.getMessage());
