@@ -21,6 +21,6 @@ public class CreditCompany {
      */
     public String chargeBill(Float billToPay, CreditCard creditCard) {
         // Company charges the credit card with given amount..
-        return "Payment confirmed.";
+        return "You have payed: " + billToPay + "\nPayment confirmed.";
     }
 }
