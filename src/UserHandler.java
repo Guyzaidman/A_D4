@@ -12,24 +12,8 @@ public class UserHandler {
         this.childNameToGuardianMap = new HashMap<>();
     }
 
-    public eParkSystem getParkSystem() {
-        return parkSystem;
-    }
-
-    public void setParkSystem(eParkSystem parkSystem) {
-        this.parkSystem = parkSystem;
-    }
-
     public HashMap<Integer, GuardianAccount> getGuardians() {
         return guardians;
-    }
-
-    public void setGuardians(HashMap<Integer, GuardianAccount> guardians) {
-        this.guardians = guardians;
-    }
-
-    public boolean isValid(int creditNumber, Date expirationDate, float maxAmount) {
-        return true;
     }
 
     public void registerNewChild(int childId, String childName, int childAge, int creditNumber, int expirationMonth, int expirationYear, float limit, int makeAccount) {
@@ -60,6 +44,7 @@ public class UserHandler {
         map.addETicket(eTicket);
         eParkSystem.systemObjects.add(eTicket);
     }
+
     public HashMap<String, GuardianAccount> getChildNameToGuardianMap() {
         return childNameToGuardianMap;
     }
@@ -102,7 +87,6 @@ public class UserHandler {
         child.setTicket(null);
     }
 
-
     /**
      * Asks park system to charge.
      * @param billToPay bill -> Float
@@ -120,10 +104,6 @@ public class UserHandler {
         child.setWeight(childWeight);
     }
 
-//    public Child getChildById(String name) {
-//
-//    }
-
     public GuardianAccount getGuardianByID(int id){
         GuardianAccount g;
         try{
@@ -135,6 +115,5 @@ public class UserHandler {
 
         return g;
     }
-
 
 }

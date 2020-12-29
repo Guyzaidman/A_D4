@@ -40,7 +40,7 @@ public class eParkSystem {
         }
 
         if (this.userHandler.getChildNameToGuardianMap().containsKey(childName)){
-            throw new Exception("Child's name already exists.\n please choose another name");
+            throw new Exception("Child's name already exists.\nPlease choose another name.");
         }
 
         int ageInt;

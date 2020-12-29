@@ -23,24 +23,12 @@ public class GuardianAccount {
         return this.id;
     }
 
-//    public void setID(int ID) {
-//        this.id = ID;
-//    }
-
     public HashMap<String, Child> getChildren() {
         return children;
     }
 
-    public void setChildren(HashMap<String, Child> children) {
-        this.children = children;
-    }
-
     public CreditCard getCreditCard() {
         return creditCard;
-    }
-
-    public void setCreditCard(CreditCard creditCard) {
-        this.creditCard = creditCard;
     }
 
     public Map getMap() {
@@ -51,17 +39,10 @@ public class GuardianAccount {
         this.map = map;
     }
 
-    public UserHandler getUserHandler() {
-        return userHandler;
-    }
-
-    public void setUserHandler(UserHandler userHandler) {
-        this.userHandler = userHandler;
-    }
-
     public void addChild(Child child) {
         this.children.put(child.getName(), child);
     }
+
     public Child getChildById(String name) {
         return this.children.get(name);
     }
