@@ -1,8 +1,6 @@
 import java.util.ArrayList;
-import java.util.Date;
 
 public class eParkSystem {
-
     private UserHandler userHandler;
     private PaymentHandler paymentHandler;
     private ePark park;
@@ -29,8 +27,7 @@ public class eParkSystem {
         return eParkSystem.systemObjects;
     }
 
-    public void enterDetails(String childId, String childAge, String hasAccount) throws Exception
-    {
+    public void enterDetails(String childId, String childAge, String hasAccount) throws Exception {
         int IDInt;
         try {
             IDInt = Integer.parseInt(childId);
@@ -78,10 +75,6 @@ public class eParkSystem {
             throw new Exception("Not a valid credit number.");
         }
 
-//        if (expirationMonth.length() != 2 || expirationYear.length() != 2){
-//            throw new Exception("Not a valid credit expiration year.");
-//        }
-
         int expMonth;
         try {
             expMonth = Integer.parseInt(expirationMonth);
@@ -116,14 +109,7 @@ public class eParkSystem {
         return this.paymentHandler.isValidCredit(ccNumber, expMonth, expYear, limit);
     }
 
-
-    public void ManageTicket()
-    {
-
-    }
-
-    public boolean AddRide(Device device, eTicket ticket)
-    {
+    public boolean AddRide(Device device, eTicket ticket) {
         float devicePrice = device.getPrice();
         boolean outOfBalance = ticket.isOutOfBalance(devicePrice);
         if (outOfBalance){
@@ -137,14 +123,12 @@ public class eParkSystem {
         }
     }
 
-    public void RemoveRide(Device device, eTicket ticket)
-    {
+    public void RemoveRide(Device device, eTicket ticket) {
         Entrance entryToRemove = ticket.removeEntry(device);
         systemObjects.remove(entryToRemove);
     }
 
-    public String ExitPark(String name)
-    {
+    public String ExitPark(String name) {
         Child child = this.userHandler.getChildById(name);
         if(!systemObjects.contains(child)) return "This child is not in the system.";
 
@@ -160,11 +144,6 @@ public class eParkSystem {
         return confirmationMsg;
     }
 
-    public void Exit()
-    {
-        System.exit(0);
-    }
-
     public Child getChildById(String childID) {
         return this.userHandler.getChildById(childID);
     }
@@ -174,12 +153,10 @@ public class eParkSystem {
     }
 
     public void registerNewChild(String childId, String childName, String childAge, String creditNumber, String expirationMonth, String expirationYear, String limit, int makeAccount) {
-
         this.userHandler.registerNewChild(Integer.parseInt(childId), childName, Integer.parseInt(childAge), Integer.parseInt(creditNumber), Integer.parseInt(expirationMonth), Integer.parseInt(expirationYear), Float.parseFloat(limit), makeAccount);
     }
 
     public void registerMeasurement(String childName, String childHeight, String childWeight) throws Exception {
-
         float height;
         try {
             height = Float.parseFloat(childHeight);
@@ -202,6 +179,7 @@ public class eParkSystem {
 
         this.userHandler.addMeasurement(childName, height, weight);
     }
+
     /**
      * Asks from payment handle to handle the payment.
      * @param billToPay

@@ -18,14 +18,6 @@ public class Child {
         this.height = 0;
     }
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
     public eTicket getTicket() {
         return ticket;
     }
@@ -38,16 +30,8 @@ public class Child {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getAge() {
         return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public float getHeight() {
@@ -74,12 +58,10 @@ public class Child {
         this.guardianAccount = guardianAccount;
     }
 
-    public eTicket geteTicket() {
-        return this.ticket;
-    }
     public void enterToDevice(Device device){
         this.ticket.enterToDevice(device);
     }
+
     public void exitFromDevice(){
         this.ticket.exitFromDevice();
     }

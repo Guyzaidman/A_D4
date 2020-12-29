@@ -56,7 +56,7 @@ public class UserHandler {
         eParkSystem.systemObjects.add(child);
         this.childNameToGuardianMap.put(child.getName(), guardianAccount);
 
-        eTicket eTicket = new eTicket(0, child, creditCard, limit);
+        eTicket eTicket = new eTicket(child, creditCard, limit);
         map.addETicket(eTicket);
         eParkSystem.systemObjects.add(eTicket);
     }
