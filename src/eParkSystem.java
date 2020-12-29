@@ -29,7 +29,7 @@ public class eParkSystem {
         return eParkSystem.systemObjects;
     }
 
-    public void enterDetails(String childId, String childAge, String hasAccount) throws Exception
+    public void enterDetails(String childId, String childName, String childAge, String hasAccount) throws Exception
     {
         int IDInt;
         try {
@@ -39,6 +39,10 @@ public class eParkSystem {
         }
         if(IDInt < 0){
             throw new Exception("Not a valid ID.");
+        }
+
+        if (this.userHandler.getChildNameToGuardianMap().containsKey(childName)){
+            throw new Exception("Child's name already exists.\n please choose another name");
         }
 
         int ageInt;
@@ -77,10 +81,6 @@ public class eParkSystem {
         if(ccNumber < 0){
             throw new Exception("Not a valid credit number.");
         }
-
-//        if (expirationMonth.length() != 2 || expirationYear.length() != 2){
-//            throw new Exception("Not a valid credit expiration year.");
-//        }
 
         int expMonth;
         try {
