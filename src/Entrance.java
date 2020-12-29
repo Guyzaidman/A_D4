@@ -9,22 +9,6 @@ public class Entrance {
         this.inUse = false;
     }
 
-    public Device getDevice() {
-        return device;
-    }
-
-    public void setDevice(Device device) {
-        this.device = device;
-    }
-
-    public eTicket getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(eTicket ticket) {
-        this.ticket = ticket;
-    }
-
     public boolean isInUse() {
         return inUse;
     }

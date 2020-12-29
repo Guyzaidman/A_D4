@@ -11,10 +11,6 @@ public class eParkMenu {
         Device giantWheel = eps.getDeviceFactory().buildDevice("Giant Wheel", false, eps.getPark(), 0,0,0,6);
         Device carrousel = eps.getDeviceFactory().buildDevice("Carrousel", false, eps.getPark(), 8,0,0,2);
 
-//        Device mambaRide = new ExtremeDevice("Mamba Ride", eps.getPark(), 12, 140, 0,10);
-//        Device giantWheel = new Device("Giant Wheel", eps.getPark(), 0,0,0,10);
-//        Device carrousel = new Device("Carrousel", eps.getPark(), 8,0,0,10);
-
         ArrayList<Object> objects = eParkSystem.getSystemObjects();
 
         eps.addDeviceToPark(mambaRide);
@@ -24,7 +20,6 @@ public class eParkMenu {
         System.out.println("Welcome to our magical park!");
 
         Scanner scanner = new Scanner(System.in);  // Create a Scanner object
-
         //main loop
         while (true){
 
@@ -117,7 +112,7 @@ public class eParkMenu {
                     continue;
                 }
 
-                eTicket ticket = child.geteTicket();
+                eTicket ticket = child.getTicket();
 
                 //displaying eTicket details
                 System.out.println(ticket);
@@ -230,7 +225,6 @@ public class eParkMenu {
             }
 
             else if (userInput.toLowerCase().equals("exit")){
-                eps.Exit();
                 System.out.println("Goodbye");
                 break;
             }

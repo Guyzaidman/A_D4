@@ -1,5 +1,4 @@
 public class Device {
-//    private int ID;
     private String name;
     private ePark park;
     private int minAge;
@@ -31,7 +30,6 @@ public class Device {
     }
 
     public float getPrice() { return price; }
-
 
     public boolean isSuitable(int childAge, float childWeight, float childHeight) {
         if (childAge < minAge) return false;

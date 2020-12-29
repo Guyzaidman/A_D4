@@ -10,18 +10,6 @@ public class ePark {
         this.devices = new HashMap<>();
     }
 
-    public eParkSystem getParkSystem() {
-        return parkSystem;
-    }
-
-    public void setParkSystem(eParkSystem parkSystem) {
-        this.parkSystem = parkSystem;
-    }
-
-    public HashMap<String, Device> getDevices() {
-        return devices;
-    }
-
     public void setDevices(String name, Device device) {
         this.devices.put(name,device);
     }
